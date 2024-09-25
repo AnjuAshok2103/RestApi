@@ -37,5 +37,27 @@ const getAllProductsByCompanyAndName = async (req, res) => {
     const productData = await Product.find(queryObject);
     res.status(200).json({ productData });
 };
+//sort
+const sortProductsBy = async (req, res) => {
+    try {
+        // Get the sort query from req.query.sort
+        const sortFields = req.query.sort
+            ? Object.fromEntries(
+                  req.query.sort.split(",").map(field => [
+                      field.replace(/^-/, ""), // Remove '-' for field name
+                      field.startsWith("-") ? -1 : 1, // Determine sort order
+                  ])
+              )
+            : { name: 1 }; // Default to sorting by name
+        console.log(sortFields);
+        // Find products and apply sorting
+        const sortedProducts = await Product.find().sort(sortFields);
 
-module.exports = { getAllProducts, getAllProductsTesting, getAllProductsByCompany, getAllProductsByCompanyAndName };
+        // Respond with sorted products
+        res.status(200).json({ sortedProducts });
+    } catch (error) {
+        res.status(500).json({ error: "Failed to sort products" });
+    }
+};
+
+module.exports = { getAllProducts, getAllProductsTesting, getAllProductsByCompany, getAllProductsByCompanyAndName, sortProductsBy };
