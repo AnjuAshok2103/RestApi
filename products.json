@@ -1,0 +1,60 @@
+[
+  {
+    "name": "iPhone 14",
+    "price": 999,
+    "featured": true,
+    "company": "Apple"
+  },
+  {
+    "name": "MacBook Pro",
+    "price": 2499,
+    "rating": 4.8,
+    "company": "Apple"
+  },
+  {
+    "name": "Dell XPS 13",
+    "price": 1199,
+    "featured": true,
+    "company": "Dell"
+  },
+  {
+    "name": "Samsung Galaxy S23",
+    "price": 799,
+    "company": "Samsung"
+  },
+  {
+    "name": "MI Notebook",
+    "price": 699,
+    "featured": false,
+    "rating": 4.6,
+    "company": "MI"
+  },
+  {
+    "name": "iPad Air",
+    "price": 599,
+    "company": "Apple"
+  },
+  {
+    "name": "Samsung TV",
+    "price": 1200,
+    "featured": true,
+    "company": "Samsung"
+  },
+  {
+    "name": "Dell Inspiron",
+    "price": 950,
+    "rating": 4.7,
+    "company": "Dell"
+  },
+  {
+    "name": "MI TV",
+    "price": 400,
+    "company": "MI"
+  },
+  {
+    "name": "Apple Watch",
+    "price": 399,
+    "featured": true,
+    "company": "Apple"
+  }
+]
