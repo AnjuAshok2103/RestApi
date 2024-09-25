@@ -6,6 +6,12 @@
     "company": "Apple"
   },
   {
+    "name": "iPhone 15",
+    "price": 999,
+    "featured": false,
+    "company": "Apple"
+  },
+  {
     "name": "MacBook Pro",
     "price": 2499,
     "rating": 4.8,
