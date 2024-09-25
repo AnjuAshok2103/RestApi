@@ -62,15 +62,33 @@ const sortProductsBy = async (req, res) => {
 //select
 //localhost:3000/api/products/selectProducts?select=company,price
 const selectProducts = async (req, res) => {
-    console.log(req.query);
     const { select } = req.query;
     let productData = Product.find({}).select("name");
     if (select) {
         let selectFix = select.split(",").join(" ");
         productData.select(selectFix);
     }
-    const final = await productData;
-    res.status(200).json({ final });
+    const products = await productData;
+    res.status(200).json({ products });
 };
 
-module.exports = { getAllProducts, getAllProductsTesting, getAllProductsByCompany, getAllProductsByCompanyAndName, sortProductsBy, selectProducts };
+//pagination and limit
+const getProductsPerPage = async (req, res) => {
+    const { page, limit } = req.query;
+    const pageInt = parseInt(page) || 1; // Get current page from query, default to 1
+    const limitInt = parseInt(limit) || 3; // Limit the number of items per page, default to 3
+    const skip = (pageInt - 1) * limitInt; // Calculate the number of documents to
+    console.log(skip);
+    let productData = await Product.find({}).skip(skip).limit(limitInt);
+    res.status(200).json({ productData });
+};
+
+module.exports = {
+    getAllProducts,
+    getAllProductsTesting,
+    getAllProductsByCompany,
+    getAllProductsByCompanyAndName,
+    sortProductsBy,
+    selectProducts,
+    getProductsPerPage,
+};
