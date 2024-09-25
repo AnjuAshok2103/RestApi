@@ -59,5 +59,18 @@ const sortProductsBy = async (req, res) => {
         res.status(500).json({ error: "Failed to sort products" });
     }
 };
+//select
+//localhost:3000/api/products/selectProducts?select=company,price
+const selectProducts = async (req, res) => {
+    console.log(req.query);
+    const { select } = req.query;
+    let productData = Product.find({}).select("name");
+    if (select) {
+        let selectFix = select.split(",").join(" ");
+        productData.select(selectFix);
+    }
+    const final = await productData;
+    res.status(200).json({ final });
+};
 
-module.exports = { getAllProducts, getAllProductsTesting, getAllProductsByCompany, getAllProductsByCompanyAndName, sortProductsBy };
+module.exports = { getAllProducts, getAllProductsTesting, getAllProductsByCompany, getAllProductsByCompanyAndName, sortProductsBy, selectProducts };
